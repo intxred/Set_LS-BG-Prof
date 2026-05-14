@@ -17,7 +17,7 @@ if (-not $TargetUser) { $TargetUser = $env:USERNAME }
 # 3. Dynamically scan all drives to find the 'lab' folder
 $sourceDir = $null
 foreach ($drive in (Get-PSDrive -PSProvider FileSystem).Root) {
-    $testPath = Join-Path $drive "lab\Platinum Outsourcing Brand (1).png"
+    $testPath = Join-Path $drive "lab\File.png"
     if (Test-Path $testPath) {
         $sourceDir = Join-Path $drive "lab"
         break
@@ -30,14 +30,14 @@ if (-not $sourceDir) {
 }
 
 # 4. Define paths and copy files to C:\Users\Public\lab
-$lockImageSrc = Join-Path $sourceDir "Platinum Outsourcing Brand (1).png"
-$wallImageSrc = Join-Path $sourceDir "Platinum Outsourcing Brand (1).png"
-$profImageSrc = Join-Path $sourceDir "PlatservLogo.png"
+$lockImageSrc = Join-Path $sourceDir "File.png"
+$wallImageSrc = Join-Path $sourceDir "File.png"
+$profImageSrc = Join-Path $sourceDir "File.png"
 
 $destDir = "C:\Users\Public\lab"
-$lockImageDest = Join-Path $destDir "Platinum Outsourcing Brand (1).png"
-$wallImageDest = Join-Path $destDir "Platinum Outsourcing Brand (1).png"
-$profImageDest = Join-Path $destDir "PlatservLogo.png"
+$lockImageDest = Join-Path $destDir "File.png"
+$wallImageDest = Join-Path $destDir "File.png"
+$profImageDest = Join-Path $destDir "File.png"
 
 if (!(Test-Path $destDir)) { New-Item -ItemType Directory $destDir -Force | Out-Null }
 Copy-Item $lockImageSrc $lockImageDest -Force
@@ -58,7 +58,7 @@ Set-ItemProperty $lockRegPath LockScreenImageStatus 1 -Type DWord -Force
 # ==============================================================================
 $UserScriptPath = "C:\Users\Public\lab\ApplyUserBranding.ps1"
 $UserScriptContent = @'
-$wallImageDest = "C:\Users\Public\lab\Platinum Outsourcing Brand (1).png"
+$wallImageDest = "C:\Users\Public\lab\file.png"
 
 Add-Type @"
 using System;
